@@ -33,6 +33,17 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		},
 	})
+	vscode.workspace.onDidChangeTextDocument((e)=>{
+		e.contentChanges.forEach((change)=>{
+			for (let index = 0; index < change.text.length; index++) {
+				const element = change.text.charCodeAt(index);
+				console.log(element)
+				c.send(new ServerProtocol.SendEvent(
+					new Event.Typed(element)
+				))
+			}
+		})
+	})
 	
 	c.send(new ServerProtocol.SendEvent(new Event.OpenProject("Hello")))
 	context.subscriptions.push(disposable);

@@ -6,6 +6,7 @@
   "engines": {
     "vscode": "^1.78.0"
   },
+  "publisher": "naotiki",
   "icon": "Chiiugo.png",
   "repository": "https://github.com/naotiki/chiiugo-vsc-extension",
   "categories": [

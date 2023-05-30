@@ -35,14 +35,15 @@ export function activate(context: vscode.ExtensionContext) {
 		c.send(new SocketProtocol.SendEvent(new Event.StartBuild(e.execution.task.name)))
 	}))
 	disposables.push(vscode.workspace.onDidChangeTextDocument((e)=>{
-		e.contentChanges.forEach((change)=>{
-			for (let index = 0; index < change.text.length; index++) {
-				const element = change.text.charCodeAt(index)
-				c.send(new SocketProtocol.SendEvent(
-					new Event.Typed(element)
-				))
-			}
-		})
+		let text=e.contentChanges[0].text
+	
+		text=text.substring(Math.max(text.length-500,0),)
+		for (let index = 0; index < text.length; index++) {
+			const element = text.charCodeAt(index)
+			c.send(new SocketProtocol.SendEvent(
+				new Event.Typed(element)
+			))
+		}
 	}))
 	
 	
@@ -56,5 +57,13 @@ function connectToChiiugo(client:Client) {
 	client.startServer().then(()=>{
 		vscode.window.showInformationMessage('Hello World from chiiugo-vsc!');
 		client.send(new SocketProtocol.SendEvent(new Event.OpenProject(vscode.workspace.name??"Unknown")))
+		client.onReceived((s)=>{
+			console.log(s)
+			switch(s){
+				case SocketProtocol.Ping:{
+					vscode.window.showInformationMessage('Pong!');
+				}
+			}
+		})
 	})
 }

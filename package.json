@@ -1,11 +1,13 @@
 {
   "name": "chiiugo-vsc",
-  "displayName": "chiiugo-vsc",
-  "description": "",
+  "displayName": "Chiiugo / ちぃうご",
+  "description": "Visual Studio Code Extension for Chiiugo",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.78.0"
   },
+  "icon": "Chiiugo.png",
+  "repository": "https://github.com/naotiki/chiiugo-vsc-extension",
   "categories": [
     "Other"
   ],
@@ -16,8 +18,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "chiiugo-vsc.helloWorld",
-        "title": "Hello World"
+        "command": "chiiugo-vsc.connect2chiiugo",
+        "title": "Connect to Chiiugo"
       }
     ]
   },
@@ -30,16 +32,19 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.78.0",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
+    "@types/vscode": "^1.78.0",
     "@typescript-eslint/eslint-plugin": "^5.59.1",
     "@typescript-eslint/parser": "^5.59.1",
+    "@vscode/test-electron": "^2.3.0",
     "eslint": "^8.39.0",
     "glob": "^8.1.0",
     "mocha": "^10.2.0",
-    "typescript": "^5.0.4",
-    "@vscode/test-electron": "^2.3.0"
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "chiiugo-protocol-core": "file:../kotlin/chiiugo/chiiugo-protocol-core/build/js/packages/chiiugo-protocol-core"
   }
 }

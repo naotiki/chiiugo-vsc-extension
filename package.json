@@ -2,7 +2,7 @@
   "name": "chiiugo-vsc",
   "displayName": "Chiiugo / ちぃうご",
   "description": "Visual Studio Code Extension for Chiiugo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.78.0"
   },

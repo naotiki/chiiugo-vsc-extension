@@ -55,7 +55,6 @@ export function deactivate() { }
 
 function connectToChiiugo(client:Client) {
 	client.startServer().then(()=>{
-		vscode.window.showInformationMessage('Hello World from chiiugo-vsc!');
 		client.send(new SocketProtocol.SendEvent(new Event.OpenProject(vscode.workspace.name??"Unknown")))
 		client.onReceived((s)=>{
 			console.log(s)
